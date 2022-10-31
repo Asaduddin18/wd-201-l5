@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
+     * * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static async addTask(params) {
@@ -34,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
 
       console.log("Due Later");
       // FILL IN HERE
-      const dueLaterItems = await Todo.dueLater();
-      dueLaterItems.forEach((todoItem) =>
+      const dueItemsLater = await Todo.dueLater();
+      dueItemsLater.forEach((todoItem) =>
         console.log(todoItem.displayableString())
       );
     }
@@ -62,14 +63,14 @@ module.exports = (sequelize, DataTypes) => {
 
     static async dueLater() {
       // FILL IN HERE TO RETURN ITEMS DUE LATER
-      const dueLaterItems = await Todo.findAll({
+      const dueItemsLater = await Todo.findAll({
         where: { dueDate: { [Op.gt]: new Date() } },
         order: [["id", "ASC"]],
       });
 
-      return dueLaterItems;
+      return dueItemsLater;
     }
-
+// FILL IN HERE TO MARK AN ITEM AS COMPLETE
     static async markAsComplete(id) {
       // FILL IN HERE TO MARK AN ITEM AS COMPLETE
       await Todo.update(
